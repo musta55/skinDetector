@@ -60,7 +60,9 @@ public class SkinDetectorTrainer {
     boolean doesShowSkin(int R, int G, int B){
         if(R>250 && G>250 && B>250)
         {
-            return false;   // for database train, return true
+            return false; // Mask check,white rgb combination is non skin
+
+            // for database train, return true
         }
         else{
             return true;
@@ -128,7 +130,7 @@ public class SkinDetectorTrainer {
     public static void main(String[] args) throws IOException {
 
         String imagePath="src/ibtd/";
-        String name = "robert-downey.jpg";
+        String name = "0100.jpg";
         String image = "src/testImages/"+name;  //test Image path
         String maskPath="src/ibtd/Mask/";
         SkinDetectorTrainer st = new SkinDetectorTrainer();
@@ -146,7 +148,7 @@ public class SkinDetectorTrainer {
     }
     st.Calculate();
     System.out.println("Machine Trained");
-    st.SkinDetection(image,name,0.15);
+    st.SkinDetection(image,name,0.16);
     System.out.println("Image Processed");
     }
 }
